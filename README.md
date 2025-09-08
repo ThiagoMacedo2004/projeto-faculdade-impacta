@@ -24,7 +24,8 @@
 </p>
 
 ## Tecnologias utilizadas:
-
-Banco de dados: ### MySql 8
-Back-end: ### PHP
-Front-end: ### Angular 14 / Angular Material@14
+<ul>
+  <li>Banco de dados: MySql</li>
+  <li>Back-end: PHP</li>
+  <li>Front-end: Angular 14 & Angular Material@14</li>
+</ul>
