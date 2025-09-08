@@ -3,7 +3,7 @@
 
 <p>Projeto é baseado no cadastro de um usuário com os seguintes atributos:
 
-  ### Uma tabela no banco de dados para salvar os dados do usuário (tb_pessoa)
+  ### Uma tabela no banco de dados para salvar os dados do usuário (tb_usuario)
   <ul>
     <li>Nome completo</li>
     <li>E-mail</li>
@@ -20,6 +20,7 @@
     <li>bairro</li>
     <li>cidade</li>
     <li>UF</li>
+    <li>cep</li>
   </ul>
 </p>
 
