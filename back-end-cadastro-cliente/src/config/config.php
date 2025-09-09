@@ -26,8 +26,8 @@ error_reporting(E_ALL ^ E_NOTICE);
 require_once __DIR__ . '/Database.php';
 
 // arquivos
-require_once __DIR__ . '/../models/ClienteModel.php';
-require_once __DIR__ . '/../models/EnderecoModel.php';
-// require_once __DIR__ . '/../models/ContasFluxoModel.php';
+require_once __DIR__ . '/../model/ClienteModel.php';
+require_once __DIR__ . '/../model/EnderecoModel.php';
+
 
 ?>
