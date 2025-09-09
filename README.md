@@ -3,7 +3,7 @@
 
 <p>Projeto é baseado no cadastro de clientes com os seguintes atributos:
 
-  ### Uma tabela no banco de dados para salvar os dados do usuário (tb_cliente)
+  ### Uma tabela no banco de dados para salvar os dados do cliente (tb_cliente).
   <ul>
     <li>Nome completo</li>
     <li>E-mail</li>
@@ -13,7 +13,7 @@
     <li>Data do registro (Este campo é preenchido automaticamente pelo sistema)</li>
   </ul>
   
-  ### Outra tabela para o cadastro do endereço do usuário, (tb_endereco_cliente) onde as tabelas se relacionarão:
+  ### Outra tabela para o cadastro do endereço do cliente, (tb_endereco_cliente) onde as tabelas se relacionarão:
   <ul>
     <li>logradouro</li>
     <li>complemento</li>
