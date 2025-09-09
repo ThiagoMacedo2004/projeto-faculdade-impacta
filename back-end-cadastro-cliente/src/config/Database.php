@@ -1,11 +1,12 @@
 <?php
 
+// $b = new Sql();
 class Sql {
 
 	const HOSTNAME = "127.0.0.1";
 	const USERNAME = "root";
 
-	const PASSWORD = "root";
+	const PASSWORD = "";
 	const DBNAME = "clientes_faculdade_impacta";
 
 	private $conn;
@@ -28,10 +29,12 @@ class Sql {
             );
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            echo "<h1>Conexão realizada com sucesso !</h1>";
+		
+
+            // echo "<h1>Conexão realizada com sucesso !</h1>";
 
         } catch(\PDOException $e ) {
-            echo "<h2>Erro ao conectar ao banco de dados. => $e</h2>";
+            echo "<h2>Erro ao conectar ao banco de dados. =><br/> $e</h2>";
         }
 
 	}
@@ -56,12 +59,14 @@ class Sql {
 		try {
 			$stmt->execute();
 			return [
-				"sucesso" => true
+				"sucesso" => true,
+				"msg" => ""
 			];
 
 		} catch (\PDOException $e) {
 			return [
-				"error" => $e->getMessage()
+				"error" => true,
+				"msg"   => $e->getMessage()
 			];
 		}
 	}
@@ -73,11 +78,27 @@ class Sql {
 
 		try{
 			$stmt->execute();
-			return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+			return [
+				"sucesso" => true,
+				"data"    => $stmt->fetchAll(\PDO::FETCH_ASSOC),
+				"msg"     => 'Operação realizada com sucesso !'
+			];
+			
+			 
 		} catch (\PDOException $e) {
-			return ["error" => "{$e->getMessage()}"];
+			return [
+				"error" => true,
+				"msg"   => $e->getMessage()
+			];
 		}
 	}
 
+	public function getLastId()
+	{
+		$lastId = $this->conn->lastInsertId();
+		return $lastId;
+	}
+
 }
+
 ?>

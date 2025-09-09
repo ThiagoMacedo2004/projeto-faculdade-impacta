@@ -50,9 +50,14 @@ class ClienteController
     }
 
     public function gravarNovoCliente() {
-        $result = $this->clienteModel->gravarNovoCliente($this->nome, $this->email, $this->celular, $this->dataNascimento, $this->genero);
+        $result = $this->clienteModel->gravarNovoCliente();
+        // $result = $this->clienteModel->gravarNovoCliente($this->nome, $this->email, $this->celular, $this->dataNascimento, $this->genero);
 
-        print_r($result);
+        if($result['sucesso']) {
+            $result['msg'] = 'Cliente cadastrado com sucesso!';
+        }
+
+       echo json_encode($result);
     }
 }
 

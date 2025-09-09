@@ -9,11 +9,11 @@ class ClienteModel extends Sql
         $this->sql = new Sql();
     }
 
-    public function gravarNovoCliente($nome, $email, $celular, $data_nascimento, $genero) {
-        $this->select(
+    public function gravarNovoCliente($nome='thiago de souza macedo', $email='tsouzaM@gmail.com', $celular='11966477320', $data_nascimento='1988-02-28', $genero='masculino') {
+        $result = $this->sql->query(
             "INSERT INTO tb_cliente
             VALUES(
-                null,
+                'null',
                 :nome,
                 :email,
                 :celular,
@@ -30,9 +30,13 @@ class ClienteModel extends Sql
             ]
         );
 
-        $id_cliente = $this->select("LAST_INSERT_ID();");
+        
+
+        $id_cliente = $this->sql->getLastId();
 
         print_r($id_cliente);
+
+        return $result;
     }
 
     public function gravarEnderecoCliente($idCliente) {
