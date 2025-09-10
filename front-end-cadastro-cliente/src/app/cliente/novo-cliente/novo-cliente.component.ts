@@ -18,7 +18,7 @@ import { MyErrorStateMatcher } from 'src/app/shared/erros-form';
 export class NovoClienteComponent implements OnInit {
 
   formGroup!: UntypedFormGroup
-  resultCep: boolean = false
+  resultCep: any
   matcher = new MyErrorStateMatcher();
 
   constructor(
@@ -51,22 +51,18 @@ export class NovoClienteComponent implements OnInit {
   }
 
   consultaCep() {
-    this.resultCep = false
     this._clienteService.apiCep(this.formGroup.get('cep')?.value).subscribe({
       next: (result: any) => {
-        this.resultCep = false
+        this.resultCep = result
         this.setEndereco(result)
       },
       error: (result: any) => {
-        this.resultCep = false
         this._sharedService.snackbar('CEP inválido !')
       }
     })
-    this.resultCep = true
   }
 
   setEndereco(data: any) {
-    this.resultCep = true
     this.formGroup.get('logradouro')?.reset({value: data.logradouro, disabled: true})
     this.formGroup.get('complemento')?.reset({value: data.complemento, disabled: false})
     this.formGroup.get('bairro')?.reset({value: data.bairro, disabled: true})
@@ -84,6 +80,7 @@ export class NovoClienteComponent implements OnInit {
             this._sharedService.snackbar(result.msg)
             this.router.navigate(['cliente/lista-clientes'])
           } else {
+            this.setEndereco(this.resultCep)
             this._sharedService.snackbar(result.msg)
           }
         },
@@ -117,6 +114,14 @@ export class NovoClienteComponent implements OnInit {
     }
 
     return this.formGroup.get('celular')?.errors ? 'Numero de celular inválido' : '';
+  }
+
+  getErrorData() {
+    if (this.formGroup.get('dataNascimento')?.hasError('required')) {
+      return 'Preencha com uma data valida.';
+    }
+
+    return this.formGroup.get('dataNascimento')?.errors ? 'Data de nascimento inválida.' : '';
   }
 
 }
