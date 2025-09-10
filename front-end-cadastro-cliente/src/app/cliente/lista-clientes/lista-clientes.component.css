@@ -25,3 +25,7 @@ mat-icon.icon-titulo {
 mat-icon.icon-btn {
   margin-right: 10px;
 }
+
+table {
+  width: 100%;
+}

@@ -1,0 +1,78 @@
+mat-card {
+  border-top: 4px solid #3f51b5;
+  width: 76%;
+  margin: 0 auto;
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+mat-card-title .titulo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #3f51b5;
+}
+
+mat-icon.icon-titulo {
+  scale: 1.2;
+}
+
+mat-icon.icon-btn {
+  margin-right: 10px;
+}
+
+mat-card-content {
+  margin-top: 36px;
+}
+
+.dados-cliente {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+mat-form-field:nth-child(-n+2) {
+  flex: 1 1 auto;
+}
+
+.cep {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cep > mat-form-field {
+  flex: 0 1 auto;
+}
+
+.result-cep-1 {
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+.result-cep-1 mat-form-field:nth-child(-n+2) {
+  flex: 1 1 auto
+}
+
+.result-cep-2 {
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+.result-cep-2 mat-form-field:nth-child(1) {
+  flex: 1 1 auto
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 32px;
+}

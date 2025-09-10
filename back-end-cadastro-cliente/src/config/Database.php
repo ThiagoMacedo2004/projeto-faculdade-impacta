@@ -6,7 +6,7 @@ class Sql {
 	const HOSTNAME = "127.0.0.1";
 	const USERNAME = "root";
 
-	const PASSWORD = "root";
+	const PASSWORD = "";
 	const DBNAME = "clientes_faculdade_impacta";
 
 	private $conn;
@@ -66,7 +66,8 @@ class Sql {
 		} catch (\PDOException $e) {
 			return [
 				"error" => true,
-				"msg"   => $e->getMessage()
+				"erro_sistema"   => $e->getMessage(),
+				"msg" => ''
 			];
 		}
 	}
@@ -88,7 +89,8 @@ class Sql {
 		} catch (\PDOException $e) {
 			return [
 				"error" => true,
-				"msg"   => $e->getMessage()
+				"erro_sistema"   => $e->getMessage(),
+				"msg" => ''
 			];
 		}
 	}

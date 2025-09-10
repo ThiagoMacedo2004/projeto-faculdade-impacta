@@ -12,10 +12,13 @@ $cliente = new ClienteController($data);
 class ClienteController
 {
     private $clienteModel;
+    private $enderecoModel;
 
     public function __construct($data)
     {
         $this->clienteModel = new ClienteModel();
+        $this->enderecoModel = new EnderecoModel();
+
         $this->variaveis($data);
         $this->executarAcao($this->acao);
 
@@ -50,14 +53,28 @@ class ClienteController
     }
 
     public function gravarNovoCliente() {
-        $result = $this->clienteModel->gravarNovoCliente();
-        // $result = $this->clienteModel->gravarNovoCliente($this->nome, $this->email, $this->celular, $this->dataNascimento, $this->genero);
+        // $resultCliente = $this->clienteModel->gravarNovoCliente();
+        $resultCliente = $this->clienteModel->gravarNovoCliente($this->nome, $this->email, $this->celular, $this->dataNascimento, $this->genero);
 
-        if($result['sucesso']) {
-            $result['msg'] = 'Cliente cadastrado com sucesso!';
+        if($resultCliente['sucesso']) {
+            $resultEndereco = $this->enderecoModel->salvarEnderecoCliente(
+                $resultCliente['idCliente'], $this->logradouro, $this->complemento, $this->numero, $this->bairro, $this->cidade, $this->uf, $this->cep
+            );
+
+            if($resultEndereco['sucesso']) {
+                $resultEndereco['msg'] = 'Cliente cadastrado com sucesso !';
+                echo json_encode($resultEndereco);
+            } else {
+                $resultEndereco['msg'] = 'Erro ao salvar cliente. Verifique as informações.';
+                echo json_encode($resultEndereco);
+                exit(0);
+            }
+        } else {
+            $resultCliente['msg'] = 'Erro ao salvar cliente. Verifique as informações.';
+            echo json_encode($resultCliente);
+            exit(0);
         }
-
-       echo json_encode($result);
+    
     }
 }
 

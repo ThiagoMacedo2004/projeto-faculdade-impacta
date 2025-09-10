@@ -1,19 +1,63 @@
 <mat-card>
   <mat-card-title>
     <div class="titulo">
-      <mat-icon class="icon-titulo">groups</mat-icon>
+      <mat-icon class="icon-titulo">list</mat-icon>
       <span>Lista de clientes</span>
     </div>
 
     <div class="btn">
-      <button mat-raised-button color="primary">
-        <mat-icon class="icon-btn" >person_add</mat-icon>
+      <button mat-raised-button color="primary" (click)="novoCliente()">
+        <mat-icon class="icon-btn">person_add</mat-icon>
         Novo cliente
       </button>
     </div>
   </mat-card-title>
 
   <mat-card-content>
+
+    <h2 *ngIf="dataSource.data.length === 0">Nenhum cliente cadastrado. Clique no botão para cadastrar um novo cliente.</h2>
+    <div class="container-tabela" *ngIf="dataSource.data.length > 0">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef> NOME </th>
+          <td mat-cell *matCellDef="let cliente"> {{cliente.nome}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> E-MAIL </th>
+          <td mat-cell *matCellDef="let cliente"> {{cliente.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="celular">
+          <th mat-header-cell *matHeaderCellDef> CELULAR </th>
+          <td mat-cell *matCellDef="let cliente"> {{cliente.celular}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="data_nascimento">
+          <th mat-header-cell *matHeaderCellDef> DATA NASCIMENTO </th>
+          <td mat-cell *matCellDef="let cliente"> {{cliente.data_nascimento}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="genero">
+          <th mat-header-cell *matHeaderCellDef> GENÊRO </th>
+          <td mat-cell *matCellDef="let cliente"> {{cliente.genero}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="data_cadastro">
+          <th mat-header-cell *matHeaderCellDef> DATA CADASTRO </th>
+          <td mat-cell *matCellDef="let cliente"> {{cliente.genero}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acao">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let cliente"> {{cliente.genero}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
 
   </mat-card-content>
 

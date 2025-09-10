@@ -9,9 +9,9 @@ if(!$data) {
 // print_r($data);
 
 // $cep = str_replace("-", "", $data['cep']);
-// $cep = $data['cep'];
+$cep = $data['cep'];
 
-$url = "https://opencep.com/v1/07787555";
+$url = "https://opencep.com/v1/{$cep}";
 
 $endereco = json_decode(file_get_contents($url));
 

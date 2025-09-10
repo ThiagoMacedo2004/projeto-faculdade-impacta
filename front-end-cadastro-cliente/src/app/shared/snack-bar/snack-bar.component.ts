@@ -1,18 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared.module';
+import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-snack-bar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SharedModule],
   templateUrl: './snack-bar.component.html',
   styleUrls: ['./snack-bar.component.css']
 })
 export class SnackBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _snackBarRef: MatSnackBarRef<SnackBarComponent>,
+    @Inject(MAT_SNACK_BAR_DATA) public data: any
+  ) { }
 
   ngOnInit(): void {
+  }
+
+   fechar() {
+    this._snackBarRef.dismiss();
   }
 
 }

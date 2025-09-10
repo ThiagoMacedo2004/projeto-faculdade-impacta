@@ -16,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Overlay } from '@angular/cdk/overlay';
 import { ClienteService } from './app/cliente/cliente.service';
 import { APP_ROUTES } from './app/app.routes';
+import { SharedService } from './app/shared/shared.service';
 
 registerLocaleData(localePtBr);
 
@@ -40,7 +41,7 @@ bootstrapApplication(AppComponent, {
     provideRouter(APP_ROUTES),
     importProvidersFrom(BrowserAnimationsModule),
     importProvidersFrom(HttpClientModule),
-    // SharedService,
+    SharedService,
     MatSnackBar,
     Overlay,
     ClienteService,

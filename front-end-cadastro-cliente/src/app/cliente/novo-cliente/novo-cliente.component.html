@@ -1,1 +1,144 @@
-<p>novo-cliente works!</p>
+<mat-card>
+  <mat-card-title>
+    <div class="titulo">
+      <mat-icon class="icon-titulo">person_add</mat-icon>
+      <span>Cadastro de novo cliente</span>
+    </div>
+
+    <div class="btn">
+      <button mat-raised-button color="primary" (click)="router.navigate(['cliente/lista-clientes'])">
+        <mat-icon class="icon-btn">list</mat-icon>
+        Lista de clientes
+      </button>
+    </div>
+  </mat-card-title>
+
+  <mat-card-content>
+    <h2>Informe os dados do novo cliente:</h2>
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
+      <div class="dados-cliente">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome" [errorStateMatcher]="matcher" placeholder="Nome completo">
+          <mat-error *ngIf="formGroup.get('nome')?.hasError('required')">
+            Nome é <strong>Obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>E-Mail</mat-label>
+          <input matInput formControlName="email" placeholder="fulano@examplo.com" required>
+          <mat-error *ngIf="this.formGroup.get('email')?.invalid">
+            {{getErrorMessage()}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Celular</mat-label>
+          <input matInput formControlName="celular" [errorStateMatcher]="matcher" placeholder="11999999999" maxlength="11" minlength="11">
+          <mat-error *ngIf="formGroup.get('celular')?.invalid">
+             {{getErrorCelular()}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Data Nascimento</mat-label>
+          <input matInput formControlName="dataNascimento" [errorStateMatcher]="matcher" [matDatepicker]="picker" placeholder="DD/MM/AAAA">
+          <mat-error *ngIf="formGroup.get('dataNascimento')?.hasError('required')">
+            Data de Nascimento é <strong>Obrigatória</strong>
+          </mat-error>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Genêro</mat-label>
+          <mat-select formControlName="genero" [errorStateMatcher]="matcher">
+            <mat-option value="">--Selecione--</mat-option>
+            <mat-option value="Masculino">Masculino</mat-option>
+            <mat-option value="Feminino">Feminino</mat-option>
+          </mat-select>
+          <mat-error *ngIf="formGroup.get('genero')?.hasError('required')">
+            Genêro é <strong>Obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="endereco-cliente">
+        <h2>Endereço:</h2>
+        <div class="cep">
+
+          <mat-form-field appearance="outline">
+            <mat-label>CEP</mat-label>
+            <input matInput formControlName="cep" placeholder="00000000" maxlength="8">
+            <mat-error *ngIf="this.formGroup.get('cep')?.invalid">
+              {{getErrorCep()}}
+            </mat-error>
+          </mat-form-field>
+
+          <button type="button" mat-raised-button color="primary" (click)="consultaCep()"
+            [disabled]="!formGroup.get('cep')?.valid">
+            <mat-icon class="mat-18">search</mat-icon>
+            Consultar CEP
+          </button>
+
+        </div>
+
+        <div class="result-cep-1">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Logradouro</mat-label>
+            <input matInput formControlName="logradouro" placeholder="Informe um CEP">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Complemento</mat-label>
+            <input matInput formControlName="complemento" placeholder="Informe um CEP">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Numero</mat-label>
+            <input matInput formControlName="numero" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="formGroup.get('numero')?.hasError('required')">
+              Numero é <strong>Obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="result-cep-2">
+          <mat-form-field appearance="outline">
+            <mat-label>Bairro</mat-label>
+            <input matInput formControlName="bairro" placeholder="Informe um CEP">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Cidade</mat-label>
+            <input matInput formControlName="cidade" placeholder="Informe um CEP">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>UF</mat-label>
+            <input matInput formControlName="uf" placeholder="Informe um CEP">
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div class="btns">
+        <button type="button" mat-raised-button color="warn" (click)="formulario()">
+          <mat-icon class="icon-btn">delete</mat-icon>
+          Limpar
+        </button>
+        <button mat-raised-button type="submit" color="primary"
+          (click)="formGroup.valid ? true : _sharedService.snackbar('Preencher todos os campos obrigatórios.')">
+          <mat-icon class="icon-btn">save</mat-icon>
+          Gravar
+        </button>
+      </div>
+    </form>
+
+  </mat-card-content>
+
+</mat-card>
