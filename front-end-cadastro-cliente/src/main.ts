@@ -12,6 +12,10 @@ import { MAT_DATE_FORMATS } from '@angular/material/core';
 
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Overlay } from '@angular/cdk/overlay';
+import { ClienteService } from './app/cliente/cliente.service';
+import { APP_ROUTES } from './app/app.routes';
 
 registerLocaleData(localePtBr);
 
@@ -33,12 +37,13 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
-    // provideRouter(APP_ROUTES),
+    provideRouter(APP_ROUTES),
     importProvidersFrom(BrowserAnimationsModule),
     importProvidersFrom(HttpClientModule),
     // SharedService,
-    // MatSnackBar,
-    // Overlay,
+    MatSnackBar,
+    Overlay,
+    ClienteService,
     // LojasService,
     // DespesasService,
     // NotasService,

@@ -1,0 +1,7 @@
+
+.container {
+  padding: 24px 0;
+  height: calc(100vh - 64px);
+  background-color: snow;
+  border: 1px solid black;
+}
