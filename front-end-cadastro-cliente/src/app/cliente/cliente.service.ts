@@ -7,11 +7,11 @@ import { first } from 'rxjs';
 })
 export class ClienteService {
 
-  // private BASE_PATH = 'http://localhost/projeto-faculdade-impacta/back-end-cadastro-cliente/src/controller/ClienteController.php'
-  // private API_CEP = 'http://localhost/projeto-faculdade-impacta/back-end-cadastro-cliente/src/api/CepApi.php'
+  private BASE_PATH = 'http://localhost/projeto-faculdade-impacta/back-end-cadastro-cliente/src/controller/ClienteController.php'
+  private API_CEP = 'http://localhost/projeto-faculdade-impacta/back-end-cadastro-cliente/src/api/CepApi.php'
 
-  private API_CEP = 'http://localhost/projeto-faculdade/projeto-faculdade-impacta/back-end-cadastro-cliente/src/api/CepApi.php'
-  private BASE_PATH = 'http://localhost/projeto-faculdade/projeto-faculdade-impacta/back-end-cadastro-cliente/src/controller/ClienteController.php'
+  // private API_CEP = 'http://localhost/projeto-faculdade/projeto-faculdade-impacta/back-end-cadastro-cliente/src/api/CepApi.php'
+  // private BASE_PATH = 'http://localhost/projeto-faculdade/projeto-faculdade-impacta/back-end-cadastro-cliente/src/controller/ClienteController.php'
 
 
 

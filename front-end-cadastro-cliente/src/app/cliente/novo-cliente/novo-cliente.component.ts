@@ -41,12 +41,12 @@ export class NovoClienteComponent implements OnInit {
       dataNascimento: ['', Validators.required],
       genero        : ['', Validators.required],
       cep           : ['', [Validators.required, Validators.minLength(8)]],
-      logradouro    : [{value:'', disabled: true}, Validators.required],
+      logradouro    : ['', Validators.required],
       complemento   : [''],
       numero        : ['', Validators.required],
-      bairro        : [{value:'', disabled: true}, Validators.required],
-      cidade        : [{value:'', disabled: true}, Validators.required],
-      uf            : [{value:'', disabled: true}, Validators.required]
+      bairro        : ['', Validators.required],
+      cidade        : ['', Validators.required],
+      uf            : ['', Validators.required]
     })
   }
 
@@ -58,16 +58,26 @@ export class NovoClienteComponent implements OnInit {
       },
       error: (result: any) => {
         this._sharedService.snackbar('CEP inválido !')
+        this.resetEnderecoForm()
+        this.formGroup.get('cep')?.reset('', Validators.required)
       }
     })
   }
 
   setEndereco(data: any) {
-    this.formGroup.get('logradouro')?.reset({value: data.logradouro, disabled: true})
-    this.formGroup.get('complemento')?.reset({value: data.complemento, disabled: false})
-    this.formGroup.get('bairro')?.reset({value: data.bairro, disabled: true})
-    this.formGroup.get('cidade')?.reset({value: data.localidade, disabled: true})
-    this.formGroup.get('uf')?.reset({value: data.uf, disabled: true})
+    this.formGroup.get('logradouro')?.reset(data.logradouro)
+    this.formGroup.get('complemento')?.reset(data.complemento)
+    this.formGroup.get('bairro')?.reset(data.bairro)
+    this.formGroup.get('cidade')?.reset(data.localidade)
+    this.formGroup.get('uf')?.reset(data.uf)
+  }
+
+  resetEnderecoForm() {
+    this.formGroup.get('logradouro')?.reset('')
+    this.formGroup.get('complemento')?.reset('')
+    this.formGroup.get('bairro')?.reset('')
+    this.formGroup.get('cidade')?.reset('')
+    this.formGroup.get('uf')?.reset('')
   }
 
   onSubmit() {

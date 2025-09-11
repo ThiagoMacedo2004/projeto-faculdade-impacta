@@ -81,3 +81,8 @@ mat-form-field:nth-child(-n+2) {
   justify-content: flex-end;
   gap: 32px;
 }
+
+div.endereco-cliente mat-form-field:not(mat-form-field.not-outiline) {
+  outline: none;
+  pointer-events: none;
+}

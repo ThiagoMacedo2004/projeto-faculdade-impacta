@@ -22,7 +22,7 @@ class ClienteModel extends Sql
                 :genero,
                 :data_cadastro
             );",[
-                ":nome"            => trim(ucwords($nome)),
+                ":nome"            => trim(ucwords(strtolower($nome))),
                 ":email"           => trim(strtolower($email)),
                 ":celular"         => trim($celular),
                 ":data_nascimento" => date('Y-m-d', strtotime($data_nascimento)),

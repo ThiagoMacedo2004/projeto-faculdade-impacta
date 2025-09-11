@@ -53,7 +53,7 @@ class ClienteController
     }
 
     public function gravarNovoCliente() {
-        // $resultCliente = $this->clienteModel->gravarNovoCliente();
+        
         $resultCliente = $this->clienteModel->gravarNovoCliente($this->nome, $this->email, $this->celular, $this->dataNascimento, $this->genero);
 
         if($resultCliente['sucesso']) {
