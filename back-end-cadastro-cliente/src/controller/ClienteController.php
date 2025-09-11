@@ -67,13 +67,13 @@ class ClienteController
                 echo json_encode($resultEndereco);
             } else {
                 $resultEndereco['msg'] = 'Erro ao salvar cliente. Verifique as informações.... endereco';
-                http_response_code(500);
+                http_response_code(200);
                 echo json_encode($resultEndereco);
                 exit(0);
             }
         } else {
             $resultCliente['msg'] = 'Erro ao salvar cliente. Verifique as informações..... cliente';
-            http_response_code(500);
+            http_response_code(200);
             echo json_encode($resultCliente);
             exit(0);
         }
