@@ -6,9 +6,6 @@ if(!$data) {
     $data = $_REQUEST;
 }
 
-// print_r($data);
-
-// $cep = str_replace("-", "", $data['cep']);
 $cep = $data['cep'];
 
 $url = "https://opencep.com/v1/{$cep}";

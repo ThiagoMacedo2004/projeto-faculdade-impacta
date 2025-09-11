@@ -14,7 +14,7 @@ class ClienteModel extends Sql
         $result = $this->sql->query(
             "INSERT INTO tb_cliente
             VALUES(
-                'null',
+                null,
                 :nome,
                 :email,
                 :celular,
@@ -33,7 +33,7 @@ class ClienteModel extends Sql
 
 
         if($result['sucesso']) {
-            $result['idCliente'] = $this->sql->getLastId();
+            $result['idCliente'] = intval($this->sql->getLastId());
             return $result;
         }
 

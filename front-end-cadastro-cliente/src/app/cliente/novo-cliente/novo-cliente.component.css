@@ -27,13 +27,18 @@ mat-icon.icon-btn {
 }
 
 mat-card-content {
-  margin-top: 36px;
+  margin-top: 14px;
+}
+
+h2 {
+  margin-bottom: 8px;
 }
 
 .dados-cliente {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 mat-form-field:nth-child(-n+2) {

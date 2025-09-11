@@ -63,14 +63,17 @@ class ClienteController
 
             if($resultEndereco['sucesso']) {
                 $resultEndereco['msg'] = 'Cliente cadastrado com sucesso !';
+                http_response_code(201);
                 echo json_encode($resultEndereco);
             } else {
-                $resultEndereco['msg'] = 'Erro ao salvar cliente. Verifique as informações.';
+                $resultEndereco['msg'] = 'Erro ao salvar cliente. Verifique as informações.... endereco';
+                http_response_code(500);
                 echo json_encode($resultEndereco);
                 exit(0);
             }
         } else {
-            $resultCliente['msg'] = 'Erro ao salvar cliente. Verifique as informações.';
+            $resultCliente['msg'] = 'Erro ao salvar cliente. Verifique as informações..... cliente';
+            http_response_code(500);
             echo json_encode($resultCliente);
             exit(0);
         }

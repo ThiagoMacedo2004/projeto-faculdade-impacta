@@ -14,7 +14,7 @@ class EnderecoModel extends Sql {
         $result = $this->sql->query(
             "INSERT INTO tb_endereco_cliente 
             VALUES(
-                'NULL',
+                NULL,
                 :logradouro,
                 :complemento,
                 :numero,

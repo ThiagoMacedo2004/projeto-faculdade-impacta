@@ -3,7 +3,7 @@
   padding: 24px 0;
   height: calc(100vh - 64px);
   background-color: lightgray;
-
+  overflow: auto;
 }
 
 .header {
