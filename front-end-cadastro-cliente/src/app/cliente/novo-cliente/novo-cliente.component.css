@@ -10,7 +10,6 @@ mat-card-title {
   justify-content: space-between;
 }
 
-
 mat-card-title .titulo {
   display: flex;
   align-items: center;
@@ -34,6 +33,11 @@ h2 {
   margin-bottom: 8px;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+}
+
 .dados-cliente {
   display: flex;
   align-items: center;
@@ -41,8 +45,18 @@ h2 {
   flex-wrap: wrap;
 }
 
-mat-form-field:nth-child(-n+2) {
+mat-form-field:nth-child(-n + 2) {
   flex: 1 1 auto;
+}
+
+.endereco-cliente {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.endereco {
+  margin: 28px 0 -8px 0;
 }
 
 .cep {
@@ -58,28 +72,29 @@ mat-form-field:nth-child(-n+2) {
 .result-cep-1 {
   display: flex;
   align-items: center;
-  gap: 10px
+  gap: 10px;
 }
 
-.result-cep-1 mat-form-field:nth-child(-n+2) {
-  flex: 1 1 auto
+.result-cep-1 mat-form-field:nth-child(-n + 2) {
+  flex: 1 1 auto;
 }
 
 .result-cep-2 {
   display: flex;
   align-items: center;
-  gap: 10px
+  gap: 10px;
 }
 
 .result-cep-2 mat-form-field:nth-child(1) {
-  flex: 1 1 auto
+  flex: 1 1 auto;
 }
 
 .btns {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 32px;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 div.endereco-cliente mat-form-field:not(mat-form-field.not-outiline) {

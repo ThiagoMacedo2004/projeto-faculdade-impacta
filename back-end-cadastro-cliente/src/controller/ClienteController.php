@@ -72,7 +72,7 @@ class ClienteController
                 exit(0);
             }
         } else {
-            $resultCliente['msg'] = 'Erro ao salvar cliente. Verifique as informações..... cliente';
+            $resultCliente['msg'] = 'Erro ao salvar cliente. Verifique as informações';
             http_response_code(200);
             echo json_encode($resultCliente);
             exit(0);

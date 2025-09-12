@@ -56,7 +56,7 @@ export class NovoClienteComponent implements OnInit {
         this.resultCep = result
         this.setEndereco(result)
       },
-      error: (result: any) => {
+      error: () => {
         this._sharedService.snackbar('CEP inválido !')
         this.resetEnderecoForm()
         this.formGroup.get('cep')?.reset('', Validators.required)
@@ -91,7 +91,7 @@ export class NovoClienteComponent implements OnInit {
             this.router.navigate(['cliente/lista-clientes'])
           } else {
             this.setEndereco(this.resultCep)
-            this._sharedService.snackbar(result.msg)
+            this._sharedService.snackbar(`${result.msg}\n${result.erro_sistema}`)
           }
         },
         error: (e: HttpErrorResponse) => {
