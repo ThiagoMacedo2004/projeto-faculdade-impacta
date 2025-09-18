@@ -1,6 +1,5 @@
 <?php
 
-use LDAP\Result;
 
 require_once '../config/config.php';
 
