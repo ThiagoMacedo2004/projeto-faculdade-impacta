@@ -24,6 +24,14 @@ export class ClienteService {
     return this._http.post(this.BASE_PATH, obj).pipe(first())
   }
 
+  public getClientes() {
+    return this._http.get(this.BASE_PATH, {
+      params: {
+        acao: 'getClientes'
+      }
+    }).pipe(first())
+  }
+
   public apiCep(cep: any) {
     return this._http.get(this.API_CEP, {
       params: {

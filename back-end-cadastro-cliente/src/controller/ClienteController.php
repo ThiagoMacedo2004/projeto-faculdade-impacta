@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use LDAP\Result;
+
 require_once '../config/config.php';
 
 $data = json_decode(file_get_contents('php://input'));
@@ -78,6 +81,19 @@ class ClienteController
             exit(0);
         }
     
+    }
+
+    public function getClientes() {
+        $result = $this->clienteModel->getClientes();
+        
+        
+        if($result['sucesso']) {
+            
+            echo json_encode($result) ;
+        } else {
+            $result['msg'] = 'Problema ao listas clientes.';
+            echo json_encode($result);
+        }
     }
 }
 

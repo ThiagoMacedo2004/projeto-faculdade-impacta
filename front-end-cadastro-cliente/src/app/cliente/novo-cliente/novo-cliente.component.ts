@@ -20,6 +20,7 @@ export class NovoClienteComponent implements OnInit {
   formGroup!: UntypedFormGroup
   resultCep: any
   matcher = new MyErrorStateMatcher();
+  spinner: boolean = false
 
   constructor(
     public router: Router,
@@ -83,18 +84,20 @@ export class NovoClienteComponent implements OnInit {
   onSubmit() {
     if(this.formGroup.valid) {
       this.formGroup.enable()
-
+      this.spinner = true
       this._clienteService.gravarNovoCliente(JSON.stringify(this.formGroup.value)).subscribe({
         next: (result: any) => {
           if(result.sucesso) {
             this._sharedService.snackbar(result.msg)
             this.router.navigate(['cliente/lista-clientes'])
           } else {
+            this.spinner = false
             this.setEndereco(this.resultCep)
             this._sharedService.snackbar(`${result.msg}\n${result.erro_sistema}`)
           }
         },
         error: (e: HttpErrorResponse) => {
+          this.spinner = false
           this._sharedService.snackbar(e.message)
         }
       })

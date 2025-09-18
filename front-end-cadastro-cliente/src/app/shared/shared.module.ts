@@ -23,6 +23,8 @@ import { RouterModule } from '@angular/router';
 import { TextMaskModule } from 'angular2-text-mask';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 import localePtBr from '@angular/common/locales/pt';
@@ -80,8 +82,8 @@ const MY_DATE_FORMAT = {
     TextMaskModule,
     MatStepperModule,
     HttpClientModule,
-    MatRadioModule
-
+    MatRadioModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-br' },
@@ -114,7 +116,8 @@ const MY_DATE_FORMAT = {
     TextMaskModule,
     MatStepperModule,
     HttpClientModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressSpinnerModule
   ]
 })
 export class SharedModule { }

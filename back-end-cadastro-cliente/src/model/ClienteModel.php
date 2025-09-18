@@ -41,8 +41,12 @@ class ClienteModel extends Sql
         return $result;
     }
 
-    public function gravarEnderecoCliente($idCliente) {
+    public function getClientes() {
+        $result = $this->sql->select(
+            "SELECT * FROM tb_cliente ORDER BY data_cadastro DESC;"
+        );
 
+        return $result;
     }
 }
 

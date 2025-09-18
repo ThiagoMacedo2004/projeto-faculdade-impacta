@@ -1,6 +1,6 @@
 
 .container {
-  padding: 24px 0;
+  /* padding: 24px 0; */
   height: calc(100vh - 64px);
   background-color: #ebebebc9;
   overflow: auto;
@@ -9,7 +9,7 @@
 .header {
   display: flex;
   align-items: flex-end;
-  width: 76%;
+  width: 80%;
   margin: 0 auto;
   gap: 16px
 }
