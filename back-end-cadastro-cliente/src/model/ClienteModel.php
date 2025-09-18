@@ -43,7 +43,18 @@ class ClienteModel extends Sql
 
     public function getClientes() {
         $result = $this->sql->select(
-            "SELECT * FROM tb_cliente ORDER BY data_cadastro DESC;"
+            "SELECT 
+                c.*,
+                e.logradouro,
+                e.complemento,
+                e.numero,
+                e.bairro,
+                e.cidade,
+                e.uf,
+                e.cep
+            FROM tb_cliente as c
+            INNER JOIN tb_endereco_cliente as e ON (c.id = e.cliente_id)
+            ORDER BY data_cadastro DESC;"
         );
 
         return $result;

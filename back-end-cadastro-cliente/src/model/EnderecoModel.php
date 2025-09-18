@@ -37,6 +37,16 @@ class EnderecoModel extends Sql {
 
         return $result;
     }
+
+    public function getEnderecoCliente($idCliente) {
+        $result = $this->sql->select(
+            "SELECT * FROM tb_endereco_cliente WHERE cliente_id = :id_cliente;",[
+                ":id_cliente" => intval($idCliente)
+            ]
+        );
+
+        return $result;
+    }
 }
 
 ?>

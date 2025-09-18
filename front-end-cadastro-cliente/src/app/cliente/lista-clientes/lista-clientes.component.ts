@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { ClienteService } from '../cliente.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SharedService } from 'src/app/shared/shared.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogDetalhesClienteComponent } from '../dialog-detalhes-cliente/dialog-detalhes-cliente.component';
 
 @Component({
   selector: 'app-lista-clientes',
@@ -23,7 +25,8 @@ export class ListaClientesComponent implements OnInit {
   constructor(
     private _router: Router,
     private _clienteService: ClienteService,
-    private _sharedService: SharedService
+    private _sharedService: SharedService,
+    private _dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -48,4 +51,13 @@ export class ListaClientesComponent implements OnInit {
     })
   }
 
+  detalhesCliente(cliente: any) {
+    this._dialog.open(DialogDetalhesClienteComponent, {
+      data: cliente,
+      width: '55%'
+    })
+  }
+
 }
+
+

@@ -1,0 +1,80 @@
+<h2 mat-dialog-title>Detalhes do Cliente</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="container-cliente">
+    <div class="cliente">
+      <mat-icon color="primary">account_circle</mat-icon>
+      <span class="nome-cliente">{{ data.nome }}</span>
+    </div>
+    <div class="row-info">
+
+      <div class="info">
+        <span class="label">E-Mail</span>
+        <span class="data">{{ data.email }}</span>
+      </div>
+
+      <div class="info">
+        <span class="label">Celular</span>
+        <span class="data">{{ data.celular }}</span>
+      </div>
+
+      <div class="info">
+        <span class="label">Data de Nascimento</span>
+        <span class="data">{{ data.data_nascimento | date: 'dd/MM/yyyy' }}</span>
+      </div>
+
+      <div class="info">
+        <span class="label">Genêro</span>
+        <span class="data">{{ data.genero }}</span>
+      </div>
+
+      <div class="info">
+        <span class="label">Data do Cadastro</span>
+        <span class="data">{{ data.data_cadastro | date: 'dd/MM/yyyy - (HH:mm)'}}</span>
+      </div>
+    </div>
+
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="container-endereco">
+    <div class="cliente">
+      <mat-icon color="warn">add_location</mat-icon>
+      <span class="nome-cliente">Endereço</span>
+    </div>
+
+    <div class="row-info">
+
+      <div class="info">
+        <span class="label">Endereço</span>
+        <span class="data">{{ data.logradouro }}</span>
+      </div>
+
+      <div class="info">
+        <span class="label">Complemento</span>
+        <span class="data">{{ (data.complemento) ? data.complemento : '-'}}</span>
+      </div>
+
+      <div class="info">
+        <span class="label">Bairro</span>
+        <span class="data">{{ data.bairro }}</span>
+      </div>
+
+
+      <div class="info">
+        <span class="label">Cidade/UF</span>
+        <span class="data">{{ data.cidade }} / {{ data.uf}} </span>
+      </div>
+
+      <div class="info">
+        <span class="label">CEP</span>
+        <span class="data">{{ data.cep}}</span>
+      </div>
+    </div>
+  </div>
+
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="end">
+  <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial>Fechar</button>
+</mat-dialog-actions>

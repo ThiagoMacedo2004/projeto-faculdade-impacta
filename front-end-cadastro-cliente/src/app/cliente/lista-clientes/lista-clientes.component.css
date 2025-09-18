@@ -31,13 +31,14 @@ table {
 }
 
 td[mat-cell] {
-  font-size: 0.775rem;
+  font-size: 0.875rem;
 }
 
 .btns {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 8px;
 }
 
 .btns button {
