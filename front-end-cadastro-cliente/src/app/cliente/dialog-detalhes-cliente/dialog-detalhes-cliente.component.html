@@ -39,7 +39,7 @@
 
   <div class="container-endereco">
     <div class="cliente">
-      <mat-icon color="warn">add_location</mat-icon>
+      <mat-icon color="warn">location_on</mat-icon>
       <span class="nome-cliente">Endereço</span>
     </div>
 
@@ -53,6 +53,11 @@
       <div class="info">
         <span class="label">Complemento</span>
         <span class="data">{{ (data.complemento) ? data.complemento : '-'}}</span>
+      </div>
+
+      <div class="info">
+        <span class="label">Nº</span>
+        <span class="data">{{ data.numero}}</span>
       </div>
 
       <div class="info">

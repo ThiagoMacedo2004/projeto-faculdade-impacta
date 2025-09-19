@@ -7,12 +7,12 @@ import { delay, first } from 'rxjs';
 })
 export class ClienteService {
 
-  private BASE_PATH = 'http://localhost/projeto-faculdade-impacta/back-end-cadastro-cliente/src/controller/ClienteController.php'
-  private API_CEP = 'http://localhost/projeto-faculdade-impacta/back-end-cadastro-cliente/src/api/CepApi.php'
+  // private BASE_PATH = 'http://localhost/projeto-faculdade-impacta/back-end-cadastro-cliente/src/controller/ClienteController.php'
+  // private API_CEP = 'http://localhost/projeto-faculdade-impacta/back-end-cadastro-cliente/src/api/CepApi.php'
 
   // endpoint notebook
-  // private API_CEP = 'http://localhost/projeto-faculdade/projeto-faculdade-impacta/back-end-cadastro-cliente/src/api/CepApi.php'
-  // private BASE_PATH = 'http://localhost/projeto-faculdade/projeto-faculdade-impacta/back-end-cadastro-cliente/src/controller/ClienteController.php'
+  private API_CEP = 'http://localhost/projeto-faculdade/projeto-faculdade-impacta/back-end-cadastro-cliente/src/api/CepApi.php'
+  private BASE_PATH = 'http://localhost/projeto-faculdade/projeto-faculdade-impacta/back-end-cadastro-cliente/src/controller/ClienteController.php'
 
 
 
@@ -21,7 +21,7 @@ export class ClienteService {
   ) { }
 
   public gravarNovoCliente(obj: any) {
-    return this._http.post(this.BASE_PATH, obj).pipe(first(), delay(4000))
+    return this._http.post(this.BASE_PATH, obj).pipe(first(), delay(0))
   }
 
   public getClientes() {
@@ -29,7 +29,7 @@ export class ClienteService {
       params: {
         acao: 'getClientes'
       }
-    }).pipe(first(), delay(3000))
+    }).pipe(first(), delay(0))
   }
 
   public apiCep(cep: any) {
