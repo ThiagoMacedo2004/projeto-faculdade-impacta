@@ -16,4 +16,9 @@ export const CLIENTE_ROUTES: Routes = [
     path: 'novo-cliente',
     loadComponent: () => import('./novo-cliente/novo-cliente.component').then(c => NovoClienteComponent)
   },
+
+  {
+    path: ':id',
+    loadComponent: () => import('./novo-cliente/novo-cliente.component').then(c => NovoClienteComponent)
+  }
 ]

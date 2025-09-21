@@ -94,6 +94,26 @@ class ClienteController
             echo json_encode($result);
         }
     }
+
+    public function getCliente() {
+        $result = $this->clienteModel->getCliente($this->idCliente);
+
+        if(!$result['data']) {
+            http_response_code(404);
+            $result['erro_sistema'] = http_response_code(404);
+            $result['msg'] = 'Cliente não encontrado !';
+            echo json_encode($result);
+            
+            exit(0);
+        }
+
+        if($result['sucesso']) {
+            echo json_encode($result);
+        } else {
+            $result['msg'] = 'Problemas ao consultar cliente.';
+            echo json_encode($result);
+        }
+    }
 }
 
 ?>

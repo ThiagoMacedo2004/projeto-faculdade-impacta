@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmailValidator, FormBuilder, MinLengthValidator, UntypedFormGroup, Validators } from '@angular/forms';
 import { ClienteService } from '../cliente.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SharedService } from 'src/app/shared/shared.service';
 import { MyErrorStateMatcher } from 'src/app/shared/erros-form';
+import { Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-novo-cliente',
@@ -21,16 +22,34 @@ export class NovoClienteComponent implements OnInit {
   resultCep: any
   matcher = new MyErrorStateMatcher();
   spinner: boolean = false
+  idCliente!: any
 
   constructor(
     public router: Router,
+    private _activatedRoute: ActivatedRoute,
     private _fb: FormBuilder,
     private _clienteService: ClienteService,
     protected _sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
+    this.obterParametroUrl()
     this.formulario()
+  }
+
+  obterParametroUrl() {
+    this._activatedRoute.paramMap.subscribe(params => {
+      if(params.get('id')) {
+        this._clienteService.getCliente(params.get('id')).subscribe({
+          next: (result: any) => {
+
+          }
+        })
+      }
+
+    })
+
+    return this.idCliente
   }
 
   formulario() {

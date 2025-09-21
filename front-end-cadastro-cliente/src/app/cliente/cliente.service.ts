@@ -7,12 +7,12 @@ import { delay, first } from 'rxjs';
 })
 export class ClienteService {
 
-  private BASE_PATH = 'http://localhost/projeto-faculdade-impacta/back-end-cadastro-cliente/src/controller/ClienteController.php'
-  private API_CEP = 'http://localhost/projeto-faculdade-impacta/back-end-cadastro-cliente/src/api/CepApi.php'
+  // private BASE_PATH = 'http://localhost/projeto-faculdade-impacta/back-end-cadastro-cliente/src/controller/ClienteController.php'
+  // private API_CEP = 'http://localhost/projeto-faculdade-impacta/back-end-cadastro-cliente/src/api/CepApi.php'
 
   // endpoint notebook
-  // private API_CEP = 'http://localhost/projeto-faculdade/projeto-faculdade-impacta/back-end-cadastro-cliente/src/api/CepApi.php'
-  // private BASE_PATH = 'http://localhost/projeto-faculdade/projeto-faculdade-impacta/back-end-cadastro-cliente/src/controller/ClienteController.php'
+  private API_CEP = 'http://localhost/projeto-faculdade/projeto-faculdade-impacta/back-end-cadastro-cliente/src/api/CepApi.php'
+  private BASE_PATH = 'http://localhost/projeto-faculdade/projeto-faculdade-impacta/back-end-cadastro-cliente/src/controller/ClienteController.php'
 
 
 
@@ -30,6 +30,15 @@ export class ClienteService {
         acao: 'getClientes'
       }
     }).pipe(first(), delay(0))
+  }
+
+  public getCliente(idCliente: any) {
+    return this._http.get(this.BASE_PATH, {
+      params: {
+        acao: 'getCliente',
+        idCliente: idCliente
+      }
+    }).pipe(first())
   }
 
   public apiCep(cep: any) {

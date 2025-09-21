@@ -59,6 +59,25 @@ class ClienteModel extends Sql
 
         return $result;
     }
+
+    public function getCliente($idCliente) {
+        $result = $this->sql->select(
+             "SELECT 
+                c.*,
+                e.logradouro,
+                e.complemento,
+                e.numero,
+                e.bairro,
+                e.cidade,
+                e.uf,
+                e.cep
+            FROM tb_cliente as c
+            INNER JOIN tb_endereco_cliente as e ON (c.id = e.cliente_id)
+            WHERE c.id = $idCliente;",
+        );
+
+        return $result;
+    }
 }
 
 ?>

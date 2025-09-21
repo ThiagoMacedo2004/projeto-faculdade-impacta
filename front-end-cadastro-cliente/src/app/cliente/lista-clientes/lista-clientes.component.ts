@@ -58,6 +58,10 @@ export class ListaClientesComponent implements OnInit {
     })
   }
 
+  editarCliente(cliente: any) {
+    this._router.navigate(['cliente', cliente.id])
+  }
+
 }
 
 
