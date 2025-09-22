@@ -78,6 +78,28 @@ class ClienteModel extends Sql
 
         return $result;
     }
+
+    public function editarCliente($idCliente, $nome, $email, $celular, $dataNascimento, $genero) {
+        $result = $this->sql->query(
+            "UPDATE tb_cliente
+            SET 
+                nome            = :nome,
+                email           = :email,
+                celular         = :celular,
+                data_nascimento = :data_nascimento,
+                genero          = :genero
+            WHERE id = :id_cliente;", [
+                ":nome"            => trim(ucwords(strtolower($nome))),
+                ":email"           => trim(strtolower($email)),
+                ":celular"         => trim($celular),
+                ":data_nascimento" => date('Y-m-d', strtotime($dataNascimento)),
+                ":genero"          => trim(ucwords($genero)),
+                ":id_cliente"      => intval($idCliente)
+            ]
+        );
+
+       return $result;
+    }
 }
 
 ?>

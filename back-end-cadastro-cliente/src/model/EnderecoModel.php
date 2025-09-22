@@ -47,6 +47,32 @@ class EnderecoModel extends Sql {
 
         return $result;
     }
+
+    public function editarEnderecoCliente($logradouro, $complemento, $numero, $bairro, $cidade, $uf, $cep, $idCliente) {
+        $result = $this->sql->query(
+            "UPDATE tb_endereco_cliente
+            SET
+                logradouro  = :logradouro,
+                complemento = :complemento,
+                numero      = :numero,
+                bairro      = :bairro,
+                cidade      = :cidade,
+                uf          = :uf,
+                cep         = :cep
+            WHERE cliente_id = :idCliente;",[
+                ":logradouro"   => trim(ucwords($logradouro)),
+                ":complemento"  => trim(ucwords($complemento)),
+                ":numero"       => $numero ? trim($numero) : '-',
+                ":bairro"       => trim(ucwords($bairro)),
+                ":cidade"       => trim(ucwords($cidade)),
+                ":uf"           => trim(strtoupper($uf)),
+                ":cep"          => trim($cep),
+                ":idCliente"    => intval($idCliente)
+            ]
+        );
+
+        return $result;
+    }
 }
 
 ?>

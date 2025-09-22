@@ -23,6 +23,9 @@ export class NovoClienteComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   spinner: boolean = false
   idCliente!: any
+  tituloCard: string = 'Cadastrar Cliente'
+  iconCard: string = 'person_add'
+  msgSpinner: string = ''
 
   constructor(
     public router: Router,
@@ -33,28 +36,59 @@ export class NovoClienteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.obterParametroUrl()
     this.formulario()
+    this.obterParametroUrl()
   }
 
   obterParametroUrl() {
+    this.spinner = true
+    this.msgSpinner = 'Carregando informações do Cliente. Por favor, aguarde.'
     this._activatedRoute.paramMap.subscribe(params => {
       if(params.get('id')) {
+        this.tituloCard = 'Editar Cliente'
+        this.iconCard = 'edit'
+
         this._clienteService.getCliente(params.get('id')).subscribe({
           next: (result: any) => {
-
+            if(result.data) {
+              this.setInforCliente(result.data[0])
+            }
+          }, error: (e: HttpErrorResponse) => {
+            this.spinner = false
+            this._sharedService.snackbar(`Página não encontrada... ${e.status} - ${e.statusText}`)
+            this.router.navigate(['cliente/lista-clientes'])
           }
         })
+      } else {
+        this.spinner = false
       }
-
     })
+  }
 
-    return this.idCliente
+  setInforCliente(infoCliente: any) {
+
+    this.spinner = false
+
+    this.formGroup.get('acao')?.setValue('editarCliente')
+    this.formGroup.get('idCliente')?.setValue(infoCliente.id)
+    this.formGroup.get('nome')?.setValue(infoCliente.nome)
+    this.formGroup.get('email')?.setValue(infoCliente.email)
+    this.formGroup.get('celular')?.setValue(infoCliente.celular)
+    this.formGroup.get('dataNascimento')?.setValue(infoCliente.data_nascimento)
+    this.formGroup.get('genero')?.setValue(infoCliente.genero)
+    this.formGroup.get('cep')?.setValue(infoCliente.cep)
+    this.formGroup.get('logradouro')?.setValue(infoCliente.logradouro)
+    this.formGroup.get('complemento')?.setValue(infoCliente.complemento)
+    this.formGroup.get('numero')?.setValue(infoCliente.numero)
+    this.formGroup.get('bairro')?.setValue(infoCliente.bairro)
+    this.formGroup.get('cidade')?.setValue(infoCliente.cidade)
+    this.formGroup.get('uf')?.setValue(infoCliente.uf)
   }
 
   formulario() {
     this.formGroup = this._fb.group({
       acao          : 'gravarNovoCliente',
+      idCliente     : '',
       nome          : ['', Validators.required],
       email         : ['', [Validators.required, Validators.email]],
       celular       : ['', [Validators.required, Validators.minLength(8)]],
@@ -104,18 +138,21 @@ export class NovoClienteComponent implements OnInit {
     if(this.formGroup.valid) {
       this.formGroup.enable()
       this.spinner = true
+      this.msgSpinner = 'Salvando Cliente. Por favor, aguarde.'
       this._clienteService.gravarNovoCliente(JSON.stringify(this.formGroup.value)).subscribe({
         next: (result: any) => {
           if(result.sucesso) {
             this._sharedService.snackbar(result.msg)
             this.router.navigate(['cliente/lista-clientes'])
-          } else {
+          } else if(result.error) {
+
             this.spinner = false
-            this.setEndereco(this.resultCep)
+            // this.setEndereco(this.resultCep)
             this._sharedService.snackbar(`${result.msg}\n${result.erro_sistema}`)
           }
         },
         error: (e: HttpErrorResponse) => {
+
           this.spinner = false
           this._sharedService.snackbar(e.message)
         }

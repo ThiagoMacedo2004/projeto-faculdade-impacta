@@ -1,15 +1,15 @@
 <div class="container-spinner" *ngIf="spinner">
   <div class="spinner">
     <mat-spinner></mat-spinner>
-    Processando requisição.
+    <span>{{msgSpinner}}</span>
   </div>
 </div>
 
 <mat-card>
   <mat-card-title>
     <div class="titulo">
-      <mat-icon class="icon-titulo">person_add</mat-icon>
-      <span>Cadastrar Cliente</span>
+      <mat-icon class="icon-titulo">{{ iconCard }}</mat-icon>
+      <span>{{ tituloCard }}</span>
     </div>
 
     <div class="btn">
@@ -148,7 +148,7 @@
       </div>
 
       <div class="btns">
-        <button type="button" mat-raised-button color="warn" (click)="formulario()">
+        <button type="button" mat-raised-button color="warn" [disabled]="iconCard == 'edit'" (click)="formulario()">
           <mat-icon class="icon-btn">delete</mat-icon>
           Limpar
         </button>

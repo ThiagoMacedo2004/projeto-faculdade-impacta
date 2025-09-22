@@ -47,8 +47,10 @@ class ClienteController
         if (method_exists($this, $acao)) {
             $this->$acao();
         } else {
+            http_response_code(404);
             echo json_encode(array(
-                "error" => 'Ação não encontrada !'
+                "msg" => 'Ação não encontrada !',
+                "erro_sistema" => http_response_code(404)
             ));
             exit(0);
         }
@@ -111,6 +113,36 @@ class ClienteController
             echo json_encode($result);
         } else {
             $result['msg'] = 'Problemas ao consultar cliente.';
+            echo json_encode($result);
+        }
+    }
+
+    public function editarCliente() {
+        $result = $this->clienteModel->editarCliente($this->idCliente, $this->nome, $this->email, $this->celular, $this->dataNascimento, $this->genero);
+
+        if($result['sucesso']) {
+            $resultEndereco = $this->enderecoModel->editarEnderecoCliente(
+                $this->logradouro, 
+                $this->complemento, 
+                $this->numero, 
+                $this->bairro, 
+                $this->cidade, 
+                $this->uf, 
+                $this->cep,
+                $this->idCliente
+            );
+
+            if($resultEndereco['sucesso']) {
+                $resultEndereco['msg'] = 'Dados atualizados com sucesso !';
+                http_response_code(200);
+                echo json_encode($resultEndereco);
+            } else {
+                $resultEndereco['Erro ao atualizar o endereço do cliente...'];
+                echo json_encode($resultEndereco);
+            }
+
+        } else {
+            $result['msg'] = 'Não foi possível atualizar os dados do cliente...';
             echo json_encode($result);
         }
     }
