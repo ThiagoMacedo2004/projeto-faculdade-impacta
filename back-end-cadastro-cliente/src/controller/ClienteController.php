@@ -137,7 +137,7 @@ class ClienteController
                 http_response_code(200);
                 echo json_encode($resultEndereco);
             } else {
-                $resultEndereco['Erro ao atualizar o endereço do cliente...'];
+                $resultEndereco['msg'] = 'Erro ao atualizar o endereço do cliente...';
                 echo json_encode($resultEndereco);
             }
 

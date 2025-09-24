@@ -139,6 +139,7 @@ export class NovoClienteComponent implements OnInit {
       this.formGroup.enable()
       this.spinner = true
       this.msgSpinner = 'Salvando Cliente. Por favor, aguarde.'
+
       this._clienteService.gravarNovoCliente(JSON.stringify(this.formGroup.value)).subscribe({
         next: (result: any) => {
           if(result.sucesso) {
