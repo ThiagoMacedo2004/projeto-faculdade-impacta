@@ -40,7 +40,7 @@ export class ListaClientesComponent implements OnInit {
   getClientes() {
     this._clienteService.getClientes().subscribe({
       next: (result: any) => {
-        console.log(result)
+
         this.dataSource.data = result.data
         this.loadResult = false
       },
