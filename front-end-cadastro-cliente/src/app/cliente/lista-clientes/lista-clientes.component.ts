@@ -62,6 +62,26 @@ export class ListaClientesComponent implements OnInit {
     this._router.navigate(['cliente', cliente.id])
   }
 
+  excluiCliente(cliente: any) {
+
+    this._sharedService.snackbar(`Excluindo Cliente. Por favor aguarde.`)
+    this.dataSource.data = []
+    this.loadResult = true
+    this._clienteService.excluiCliente(cliente.id).subscribe({
+      next: (result: any) => {
+        if(result.sucesso) {
+          this.getClientes()
+          this._sharedService.snackbar(`Cliente: ${cliente.nome} excluido com sucesso.`)
+        }
+      },
+      error: (e: HttpErrorResponse) => {
+        this.getClientes()
+        this._sharedService.snackbar(e.message)
+      }
+
+    })
+  }
+
 }
 
 

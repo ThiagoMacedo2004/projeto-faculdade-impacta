@@ -146,6 +146,36 @@ class ClienteController
             echo json_encode($result);
         }
     }
+
+    public function excluiCliente() {
+        $result = $this->clienteModel->getClienteSimples($this->idCliente);
+
+        if($result['sucesso']) {
+            $resultDeleteCliente = $this->clienteModel->excluiCliente($this->idCliente);
+            
+            if($resultDeleteCliente['sucesso']) {
+                $resultDeleteEndereco = $this->enderecoModel->excluiEnderecoCliente($this->idCliente);
+
+                if($resultDeleteEndereco['sucesso']) {
+                    echo json_encode($resultDeleteEndereco);
+                } else {
+                    http_response_code(404);
+                    $result['erro_sistema'] = http_response_code(404);
+                    $result['msg'] = 'Cliente não encontrado !';
+                    echo json_encode($result);         
+                    exit(0);
+                }
+            }
+
+        } else {
+            http_response_code(404);
+            $result['erro_sistema'] = http_response_code(404);
+            $result['msg'] = 'Cliente não encontrado !';
+            echo json_encode($result);
+            
+            exit(0);
+        }
+    }
 }
 
 ?>

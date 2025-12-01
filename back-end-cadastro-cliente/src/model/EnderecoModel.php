@@ -73,6 +73,17 @@ class EnderecoModel extends Sql {
 
         return $result;
     }
+
+    public function excluiEnderecoCliente($id) {
+        $result = $this->sql->query(
+            "DELETE FROM tb_endereco_cliente
+            WHERE cliente_id = :idCliente;", [
+                ":idCliente" => intval($id)
+            ]
+        );
+
+        return $result;
+    }
 }
 
 ?>

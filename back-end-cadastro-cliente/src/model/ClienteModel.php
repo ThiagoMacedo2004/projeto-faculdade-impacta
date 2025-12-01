@@ -100,6 +100,26 @@ class ClienteModel extends Sql
 
        return $result;
     }
+
+    public function excluiCliente($id) {
+        $result = $this->sql->query(
+            "DELETE FROM tb_cliente WHERE id = :id;", [
+                ":id" => intval($id)
+            ]
+        );
+
+        return $result;
+    }
+
+    public function getClienteSimples($id) {
+        $result = $this->sql->select(
+            "SELECT * FROM tb_cliente WHERE id = :id;", [
+                ":id" => intval($id)
+            ]
+        );
+
+        return $result;
+    }
 }
 
 ?>

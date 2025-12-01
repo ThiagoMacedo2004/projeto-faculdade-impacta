@@ -41,6 +41,15 @@ export class ClienteService {
     }).pipe(first(), delay(0))
   }
 
+  public excluiCliente(idCliente: any) {
+    return this._http.delete(this.BASE_PATH, {
+      params: {
+        acao: 'excluiCliente',
+        idCliente: idCliente
+      }
+    }).pipe(first())
+  }
+
   public apiCep(cep: any) {
     return this._http.get(this.API_CEP, {
       params: {
@@ -48,4 +57,6 @@ export class ClienteService {
       }
     }).pipe(first())
   }
+
+
 }
